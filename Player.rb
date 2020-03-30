@@ -1,6 +1,6 @@
 class Player
-  def initialize
-    @total_lives = 3
+  def initialize(id)
+    @id = id
     @current_lives = 3
   end
 end

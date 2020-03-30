@@ -37,7 +37,8 @@ class Game
     next_turn
   end
 
-  # Starts the next turn, asking the current player a question
+  # Starts the turn, asking the current player a question
+  # Goes into next turn if players didn't lose
   def next_turn
     turn = Turn.new(@current_player)
     player_answer = turn.ask_question
@@ -48,10 +49,16 @@ class Game
     end
       
     show_scores
-    switch_player
-    puts "\n----- NEW TURN -----"
 
-    next_turn
+    # If player is out of lives, end game
+    # Otherwise, go to next turn
+    if (@players[@current_player].current_lives == 0)
+      end_game
+    else 
+      switch_player
+      puts "\n----- NEW TURN -----"
+      next_turn
+    end
   end
 
   # Switches to the other player when a turn ends

@@ -1,4 +1,6 @@
 class Player
+  attr_reader :current_lives
+
   def initialize(id)
     @id = id
     @current_lives = 3

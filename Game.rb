@@ -3,8 +3,7 @@ class Game
   def initialize
     @player_1 = Player.new(1)
     @player_2 = Player.new(2)
-    @players = [@player_1, @player_2]
-    @current_player = 0
+    @current_player = @player_1
   end
 
   # Presents instructions before starting game
@@ -40,19 +39,19 @@ class Game
   # Starts the turn, asking the current player a question
   # Goes into next turn if players didn't lose
   def next_turn
-    turn = Turn.new(@current_player)
+    turn = Turn.new(@current_player.id)
     player_answer = turn.ask_question
 
     # Player loses life if they answered incorrectly
     if (player_answer == false) 
-      @players[@current_player].lose_life
+      @current_player.lose_life
     end
       
     show_scores
 
     # If player is out of lives, end game
     # Otherwise, go to next turn
-    if (@players[@current_player].current_lives == 0)
+    if (@current_player.current_lives == 0)
       end_game
     else 
       switch_player
@@ -63,20 +62,20 @@ class Game
 
   # Switches to the other player when a turn ends
   def switch_player
-    @current_player = @current_player == 0 ? 1 : 0
+    @current_player = @current_player == @player_1 ? @player_2 : @player_1
   end
 
   # Shows both players remaining lives as their score
   def show_scores
-    puts "P1: #{@players[0].current_lives}/3 vs P2: #{@players[1].current_lives}/3"
+    puts "P1: #{@player_1.current_lives}/3 vs P2: #{@player_2.current_lives}/3"
   end
 
   # Announces the winner and ends game 
   def end_game
-    puts "\nPlayer #{@current_player + 1} is out of lives!"
+    puts "\nPlayer #{@current_player.id} is out of lives!"
     switch_player
 
-    puts "Player #{@current_player + 1} wins with a score of #{@players[@current_player].current_lives}/3"
+    puts "Player #{@current_player.id} wins with a score of #{@current_player.current_lives}/3"
 
     puts "\n----- GAME OVER -----"
     puts "Thank you for playing, good bye!"

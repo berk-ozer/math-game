@@ -70,4 +70,16 @@ class Game
   def show_scores
     puts "P1: #{@players[0].current_lives}/3 vs P2: #{@players[1].current_lives}/3"
   end
+
+  # Announces the winner and ends game 
+  def end_game
+    puts "\nPlayer #{@current_player + 1} is out of lives!"
+    switch_player
+
+    puts "Player #{@current_player + 1} wins with a score of #{@players[@current_player].current_lives}/3"
+
+    puts "\n----- GAME OVER -----"
+    puts "Thank you for playing, good bye!"
+    exit(0)
+  end
 end

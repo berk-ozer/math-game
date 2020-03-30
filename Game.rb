@@ -3,8 +3,8 @@ class Game
     
   end
 
-  # Presents instructions to start the game
-  def start_game
+  # Presents instructions before starting game
+  def begin
     puts "~~~~~~~~~~~~~~~~~~~~~~~~~"
     puts "Welcome to the Math Game!"
     puts "~~~~~~~~~~~~~~~~~~~~~~~~~"
@@ -29,5 +29,12 @@ class Game
       end
     end
     puts "\n~~~~~~~~~~ The Game starts now! ~~~~~~~~~~"
+    ask_question
+  end
+
+  # Asks the current player a question
+  def ask_question
+    question = Question.new
+    puts "\nPlayer 1: #{question.text}"
   end
 end

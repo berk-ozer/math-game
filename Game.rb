@@ -1,6 +1,9 @@
 class Game
+  # Create two Player objects, starting game with Player 1
   def initialize
-    
+    @player_1 = Player.new(1)
+    @player_2 = Player.new(2)
+    @current_player = 1
   end
 
   # Presents instructions before starting game
@@ -37,5 +40,10 @@ class Game
   def next_turn
     turn = Turn.new(1)
     turn.ask_question
+  end
+
+  # Switches to the other player when a turn ends
+  def switch_player
+    @current_player = @current_player == 1 ? 2 : 1
   end
 end

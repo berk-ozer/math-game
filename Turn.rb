@@ -1,8 +1,7 @@
 class Turn
-  # Get id and create new Question object
-  # Add 1 to id because it's 0 indexed
+  # Get id for display purposes and create new Question object
   def initialize(player_id)
-    @id = player_id + 1
+    @id = player_id 
     @question = Question.new
   end
 

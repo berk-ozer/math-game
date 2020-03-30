@@ -18,10 +18,11 @@ class Game
 
   # Asks each player if they are ready to start
   def ask_to_start
-    (1..2).each do |num|
-      puts "\nPlayer #{num}: Ready to start?"
+    (1..2).each do |id|
+      puts "\nPlayer #{id}: Ready to start?"
       print "> "
       answer = gets.chomp
+      # Keep asking until they answer "y"
       while (answer != "y")
         puts "Please type 'y' to start. Ready to start?"
         print "> "
@@ -36,5 +37,15 @@ class Game
   def ask_question
     question = Question.new
     puts "\nPlayer 1: #{question.text}"
+
+    print "> "
+    player_answer = gets.chomp.to_i
+
+    # Checks to see if they answered correctly
+    if(player_answer == question.correct_answer)
+      puts "Player 1: YES! You are correct!"
+    else 
+      puts "Player 1: Seriously? No!"
+    end
   end
 end

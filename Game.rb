@@ -46,12 +46,21 @@ class Game
     if (player_answer == false) 
       @players[@current_player].lose_life
     end
+      
+    show_scores
+    switch_player
+    puts "\n----- NEW TURN -----"
 
+    next_turn
   end
 
   # Switches to the other player when a turn ends
   def switch_player
-    @current_player = @current_player == 1 ? 2 : 1
+    @current_player = @current_player == 0 ? 1 : 0
   end
 
+  # Shows both players remaining lives as their score
+  def show_scores
+    puts "P1: #{@players[0].current_lives}/3 vs P2: #{@players[1].current_lives}/3"
+  end
 end

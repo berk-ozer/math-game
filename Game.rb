@@ -30,22 +30,12 @@ class Game
       end
     end
     puts "\n~~~~~~~~~~ The Game starts now! ~~~~~~~~~~"
-    ask_question
+    next_turn
   end
 
-  # Asks the current player a question
-  def ask_question
-    question = Question.new
-    puts "\nPlayer 1: #{question.text}"
-
-    print "> "
-    player_answer = gets.chomp.to_i
-
-    # Checks to see if they answered correctly
-    if(player_answer == question.correct_answer)
-      puts "Player 1: YES! You are correct!"
-    else 
-      puts "Player 1: Seriously? No!"
-    end
+  # Starts the next turn, asking the current player a question
+  def next_turn
+    turn = Turn.new(1)
+    turn.ask_question
   end
 end
